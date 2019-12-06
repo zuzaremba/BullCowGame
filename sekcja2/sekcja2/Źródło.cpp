@@ -4,44 +4,57 @@
 using namespace std;
 
 void PrintIntro();
-string GetGuessAndPrintBack();
+void PlayGame();
+string GetGuess();
+bool AskToPlayAgain();
 
+// the entry point for our application
 int main()
 {
 	PrintIntro();
-
-	// loop for the number of turns asking for guesses
-	constexpr int NUMBER_OF_TURNS = 5;
-	for (int count = 1; count <= NUMBER_OF_TURNS; count++)
-	{
-		GetGuessAndPrintBack();
-		cout << endl;
-	}
-
-	return	0;
+	PlayGame();
+	AskToPlayAgain();
+	return 0; // exit the application
 }
 
-// get a guess from player
-string GetGuessAndPrintBack() {
 
+// introduce the game
+void PrintIntro()
+{
+	constexpr int WORLD_LENGTH = 9;
+	cout << "Welcome to Bulls and Cows, a fun word game.\n";
+	cout << "Can you guess the " << WORLD_LENGTH;
+	cout << " letter isogram I'm thinking of?\n";
+	cout << endl;
+	return;
+}
+
+
+void PlayGame()
+{
+	// loop for the number of turns asking for guesses
+	constexpr int NUMBER_OF_TURNS = 5;
+	for (int count = 1; count <= NUMBER_OF_TURNS; count++) {
+		string Guess = GetGuess();
+		cout << "Your guess was: " << Guess << endl;
+		cout << endl;
+	}
+}
+
+
+string GetGuess()
+{
+	// get a guess from the player
 	cout << "Enter your guess: ";
 	string Guess = "";
 	getline(cin, Guess);
-
-	// repeat the guess back to them
-	cout << "Your guess was: " << Guess << endl;
-
 	return Guess;
-	cout << endl;
 }
 
-// introduce the game
-void PrintIntro() {
-
-	constexpr int WORD_LENGHT = 5;
-	cout << "Welcome to Bulls and Cows, a fun word game.\n";
-	cout << "Can you guess the " << WORD_LENGHT;
-	cout << " letter isogram I am thinking off ? \n";
-	cout << endl;
-	return;
+bool AskToPlayAgain()
+{
+	cout << "Do you want to play again? ";
+	string Response = "";
+	getline(cin, Response);
+	return (Response[0] == 'y') || (Response[0] == 'Y');
 }
