@@ -1,24 +1,23 @@
 #include "FBullCowGame.h"
 
-void FBullCowGame::Reset()
-{
-	return;
-}
+FBullCowGame::FBullCowGame() { Reset(); }
 
-int FBullCowGame::GetMaxTries()
-{
-	return 0;
-}
+int FBullCowGame::GetMaxTries() const { return MyMaxTries; }
 
-int FBullCowGame::GetCurrentTry()
-{
-	return 0;
-}
+int FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
 
-
-bool FBullCowGame::IsGameWon()
+bool FBullCowGame::IsGameWon() const
 {
 	return false;
+}
+
+void FBullCowGame::Reset()
+{
+	constexpr int MAX_TRIES = 8;
+
+	MyCurrentTry = 1;
+	MyMaxTries = MAX_TRIES;
+	return;
 }
 
 bool FBullCowGame::ChechGuessValidity(std::string)
