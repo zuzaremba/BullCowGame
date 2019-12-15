@@ -10,6 +10,16 @@ struct FBullCowCount
 	int32 Cows = 0;
 };
 
+enum class EGuessStatus
+{
+	Invalid_Status,
+	Ok,
+	Not_Isogram,
+	Wrong_Lenght,
+	Not_Lowercase,
+
+};
+
 class FBullCowGame {
 public:
 	FBullCowGame(); // constructor
@@ -19,11 +29,10 @@ public:
 	int32 GetHiddenWordLenght() const;
 	
 	bool IsGameWon()const;
-	bool ChechGuessValidity(FString) const;
+	EGuessStatus ChechGuessValidity(FString) const;
 
-	void Reset(); // To Do
-
-	FBullCowCount SubmitGuess(FString );
+	void Reset(); 
+	FBullCowCount SubmitValidGuess(FString );
 
 private:
 	//see in constructor

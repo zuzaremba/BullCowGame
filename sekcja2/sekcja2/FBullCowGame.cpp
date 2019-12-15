@@ -12,11 +12,10 @@ int32 FBullCowGame::GetHiddenWordLenght() const { return MyHiddenWord.length(); 
 void FBullCowGame::Reset()
 {
 	constexpr int32 MAX_TRIES = 8;
-	MyMaxTries = MAX_TRIES;
-
 	const FString HIDDEN_WORD = "ant";
-	MyHiddenWord = HIDDEN_WORD;
 
+	MyMaxTries = MAX_TRIES;
+	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
 	return;
 }
@@ -26,28 +25,39 @@ bool FBullCowGame::IsGameWon() const
 	return false;
 }
 
-bool FBullCowGame::ChechGuessValidity(FString) const
+EGuessStatus FBullCowGame::ChechGuessValidity(FString) const
 {
-	return false;
+	if (false) //if the guess isn't isogram
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false) //if the guess isn't all lowercase
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (false) //if the guess lenght is wrong
+	{
+		return EGuessStatus::Wrong_Lenght;
+	}
+	else
+	{
+		return EGuessStatus::Ok;
+	}
+	
 }
 
-
-
-
 // receives a VALID guess, incriments turn, and returns count
-FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
-{
-	//increment the turn number
+FBullCowCount FBullCowGame::SubmitValidGuess(FString Guess)
+{	
 	MyCurrentTry++;
-
-	//set up a return variable
 	FBullCowCount BullCowCount;
+	int32 WordLenght = MyHiddenWord.length(); //assumng same lenght as guess
 
-	//loop through all letters in the guess
-	int32 HiddenWordLenght = MyHiddenWord.length();
-	for (int32 MHWChar = 0; MHWChar < HiddenWordLenght; MHWChar++) {
-		//compare letters against the hidden word
-		for (int32 GChar = 0; GChar < HiddenWordLenght; GChar++) {
+	//loop through all letters in the hidden word
+	
+	for (int32 MHWChar = 0; MHWChar < WordLenght; MHWChar++) {
+		//compare letters against the guess
+		for (int32 GChar = 0; GChar < WordLenght; GChar++) {
 			if (Guess[GChar] == MyHiddenWord[MHWChar]) {
 				if (MHWChar == GChar) {
 					BullCowCount.Bulls++;
