@@ -1,13 +1,16 @@
 /* This is the console executable, that makes use of the BullCow class
-bla bla bla For game logic see the FBullCowGame class.
+This acts as the view in a MVC pattern, and is responsible for all
+user interaction. For game logic see the FBullCowGame class.
 */
 
+#pragma once
 #include <iostream>
 #include <string>	
 #include "FBullCowGame.h"
 
 using FText = std::string;
 using int32 = int;
+
 
 void PrintIntro();
 void PlayGame();
@@ -17,18 +20,20 @@ void PrintGameSUmmary();
 
 FBullCowGame BCGame; // instantiate a new game
 
-// the entry point for our application
-int main()
-{
-	bool bPlayAgain = false;
-	do {
-		PrintIntro();
-		PlayGame();
-		bPlayAgain = AskToPlayAgain();
-	} while (bPlayAgain);
 
-	return 0; // exit the application
-}
+	// the entry point for our application
+	int main()
+	{
+
+		bool bPlayAgain = false;
+		do {
+			PrintIntro();
+			PlayGame();
+			bPlayAgain = AskToPlayAgain();
+		} while (bPlayAgain);
+
+		return 0; // exit the application
+	}
 
 
 // introduce the game
@@ -98,7 +103,6 @@ FText GetValidGuess()
 			std::cout << "Please enter all lowercase letters.\n\n";
 			break;
 		default:
-			// assume the guess is valid
 			break;
 		}
 		

@@ -5,7 +5,6 @@
 using FString = std::string;
 using int32 = int;
 
-// all values intialised to zero
 struct FBullCowCount
 {
 	int32 Bulls = 0;
@@ -41,7 +40,6 @@ public:
 private:
 	// see constructor for initialisation
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 
