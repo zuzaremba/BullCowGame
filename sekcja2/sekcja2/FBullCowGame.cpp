@@ -1,3 +1,5 @@
+#pragma once
+
 #include "FBullCowGame.h"
 #include <map>
 #define TMap std::map
@@ -31,6 +33,18 @@ void FBullCowGame::Reset()
 EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 {
 	if (!IsIsogram(Guess) && !IsLowercase(Guess) && Guess.length() != GetHiddenWordLength())
+	{
+		return EGuessStatus::Invalid_Status;
+	}
+	else if ( !IsLowercase(Guess) && Guess.length() != GetHiddenWordLength())
+	{
+		return EGuessStatus::Invalid_Status;
+	}
+	else if (!IsIsogram(Guess) && Guess.length() != GetHiddenWordLength())
+	{
+		return EGuessStatus::Invalid_Status;
+	}
+	else if (!IsIsogram(Guess) && !IsLowercase(Guess) )
 	{
 		return EGuessStatus::Invalid_Status;
 	}

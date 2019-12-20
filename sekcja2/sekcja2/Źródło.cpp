@@ -53,7 +53,7 @@ void PrintIntro()
 	return;
 }
 
-
+//plays a single game to completion
 void PlayGame()
 {
 	BCGame.Reset();
